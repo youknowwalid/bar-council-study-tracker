@@ -1,157 +1,683 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bar Council Study Tracker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-    }
-
-    .progress-container {
-      background-color: #e0e0e0;
-      border-radius: 25px;
-      margin: 20px 0;
-      height: 25px;
-      width: 100%;
-    }
-
-    #progress-bar {
-      background-color: #27ae60;
-      height: 100%;
-      border-radius: 25px;
-      width: 0%;
-      transition: width 0.3s;
-    }
-
-    .subject {
-      margin-top: 20px;
-    }
-
-    .subject h2 {
-      color: #34495e;
-    }
-
-    .topic {
-      display: flex;
-      align-items: center;
-      margin: 5px 0;
-    }
-
-    .topic input[type="checkbox"] {
-      margin-right: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangladesh Bar Council Enrollment Exam Syllabus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .syllabus-card {
+            transition: all 0.3s ease;
+        }
+        .syllabus-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 1000px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4f46e5;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .custom-checkbox.checked {
+            background-color: #4f46e5;
+        }
+        .custom-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Bangladesh Bar Council Study Tracker</h1>
-    <div class="progress-container">
-      <div id="progress-bar"></div>
+<body class="bg-gradient-to-br from-indigo-50 to-blue-50">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <header class="mb-10 text-center">
+            <div class="flex justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Bangladesh Bar Council</h1>
+            <h2 class="text-2xl font-semibold text-indigo-700 mb-4">Enrollment Examination Syllabus</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Track your progress and prepare effectively for the Bar Council enrollment examination with this interactive study guide.</p>
+        </header>
+
+        <div class="mb-10 bg-white rounded-xl shadow-lg p-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Your Study Progress</h3>
+                    <p class="text-gray-600">Keep track of your preparation and stay motivated!</p>
+                </div>
+                <div class="flex items-center">
+                    <div class="relative w-32 h-32">
+                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                            <circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50" />
+                            <circle class="progress-ring-circle text-indigo-600" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50" stroke-dasharray="251.2" stroke-dashoffset="251.2" id="progress-circle" />
+                        </svg>
+                        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <span class="text-2xl font-bold text-indigo-700" id="progress-percentage">0%</span>
+                                <p class="text-xs text-gray-500">Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-6">
+                        <div class="mb-2">
+                            <span class="text-lg font-semibold text-gray-800" id="topics-completed">0</span>
+                            <span class="text-gray-600"> / </span>
+                            <span class="text-gray-600" id="total-topics">0</span>
+                            <span class="text-gray-600"> topics completed</span>
+                        </div>
+                        <button id="reset-progress" class="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors text-sm font-medium">Reset Progress</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    Study Tips
+                </h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Create a study schedule and stick to it
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Focus on understanding concepts rather than memorizing
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Practice with previous years' questions
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Join study groups for discussions
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Exam Information
+                </h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Written examination with multiple choice and descriptive questions
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Viva voce examination after passing written test
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Minimum passing marks: 40% in each paper and 50% in aggregate
+                    </li>
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Held twice a year (typically in June and December)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-semibold text-gray-800">Syllabus Content</h3>
+                <div class="flex items-center">
+                    <button id="expand-all" class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg hover:bg-indigo-200 transition-colors text-sm font-medium mr-2">Expand All</button>
+                    <button id="collapse-all" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium">Collapse All</button>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden" id="syllabus-container">
+                <!-- Syllabus content will be loaded here -->
+                <div class="p-4 text-center text-gray-500">
+                    <svg class="animate-spin h-8 w-8 mx-auto text-indigo-600 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p>Loading syllabus data...</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center text-gray-600 mt-12 pb-8">
+            <p>© 2023 Bangladesh Bar Council Enrollment Exam Syllabus Tracker</p>
+            <p class="text-sm mt-2">This is an unofficial study tool. For official information, please visit <a href="https://www.barcouncil.gov.bd" class="text-indigo-600 hover:underline" target="_blank">www.barcouncil.gov.bd</a></p>
+        </footer>
     </div>
-    <div id="syllabus-container"></div>
-  </div>
-  <script>
-    const syllabus = {
-      "Preliminary Examination (MCQ)": [
-        "The Code of Civil Procedure, 1908",
-        "The Specific Relief Act, 1877",
-        "The Code of Criminal Procedure, 1898",
-        "The Penal Code",
-        "The Evidence Act, 1872",
-        "The Limitation Act, 1908",
-        "Professional Ethics, Bar Council Order & Rules, Legal Decisions and Reports"
-      ],
-      "Written Examination": [
-        "The Code of Civil Procedure, 1908",
-        "The Specific Relief Act, 1877",
-        "The Code of Criminal Procedure, 1898",
-        "The Penal Code",
-        "The Evidence Act, 1872",
-        "The Limitation Act, 1908",
-        "Professional Ethics, Bar Council Order & Rules, Legal Decisions and Reports"
-      ]
-    };
 
-    const syllabusContainer = document.getElementById('syllabus-container');
-    const progressBar = document.getElementById('progress-bar');
+    <script>
+        // Syllabus data structure
+        const syllabusData = [
+            {
+                id: 'civil-procedure',
+                title: 'Civil Procedure Code and Related Laws',
+                topics: [
+                    { id: 'cp-1', text: 'Jurisdiction of Civil Courts' },
+                    { id: 'cp-2', text: 'Res-judicata and Res-subjudice' },
+                    { id: 'cp-3', text: 'Place of suing' },
+                    { id: 'cp-4', text: 'Foreign judgment' },
+                    { id: 'cp-5', text: 'Parties to suits' },
+                    { id: 'cp-6', text: 'Frame of suits' },
+                    { id: 'cp-7', text: 'Institution of suits' },
+                    { id: 'cp-8', text: 'Summons' },
+                    { id: 'cp-9', text: 'Discovery, inspection and production of documents' },
+                    { id: 'cp-10', text: 'Appearance of parties and consequences of non-appearance' },
+                    { id: 'cp-11', text: 'Ex-parte decree and procedure' },
+                    { id: 'cp-12', text: 'Adjournment' },
+                    { id: 'cp-13', text: 'Death, marriage and insolvency of parties' },
+                    { id: 'cp-14', text: 'Withdrawal and adjustment of suits' },
+                    { id: 'cp-15', text: 'Payment into court' },
+                    { id: 'cp-16', text: 'Commissions' },
+                    { id: 'cp-17', text: 'Arrest before judgment' },
+                    { id: 'cp-18', text: 'Attachment before judgment' },
+                    { id: 'cp-19', text: 'Temporary injunctions' },
+                    { id: 'cp-20', text: 'Interlocutory orders' },
+                    { id: 'cp-21', text: 'Receivers' },
+                    { id: 'cp-22', text: 'Affidavits' },
+                    { id: 'cp-23', text: 'Judgment and decree' },
+                    { id: 'cp-24', text: 'Interest and costs' },
+                    { id: 'cp-25', text: 'Execution' },
+                    { id: 'cp-26', text: 'Incidental proceedings' },
+                    { id: 'cp-27', text: 'Suits in particular cases' },
+                    { id: 'cp-28', text: 'Appeals' },
+                    { id: 'cp-29', text: 'Review' },
+                    { id: 'cp-30', text: 'Revision' },
+                    { id: 'cp-31', text: 'Reference' },
+                    { id: 'cp-32', text: 'Suits by or against the Government or public officers' },
+                    { id: 'cp-33', text: 'Suits by aliens and by or against foreign rulers, ambassadors and envoys' },
+                    { id: 'cp-34', text: 'Interpleader suits' },
+                    { id: 'cp-35', text: 'Suits relating to public matters' },
+                    { id: 'cp-36', text: 'Supplemental proceedings' },
+                    { id: 'cp-37', text: 'Inherent powers of the court' },
+                    { id: 'cp-38', text: 'Miscellaneous' },
+                    { id: 'cp-39', text: 'Limitation Act' },
+                    { id: 'cp-40', text: 'Court Fees Act' },
+                    { id: 'cp-41', text: 'Suits Valuation Act' },
+                    { id: 'cp-42', text: 'Specific Relief Act' },
+                    { id: 'cp-43', text: 'Arbitration Act' }
+                ]
+            },
+            {
+                id: 'criminal-procedure',
+                title: 'Criminal Procedure Code and Related Laws',
+                topics: [
+                    { id: 'crp-1', text: 'Constitution and powers of Criminal Courts and Offices' },
+                    { id: 'crp-2', text: 'Powers of Courts' },
+                    { id: 'crp-3', text: 'Arrest, escape and retaking' },
+                    { id: 'crp-4', text: 'Processes to compel appearance' },
+                    { id: 'crp-5', text: 'Processes to compel the production of things' },
+                    { id: 'crp-6', text: 'Preventive action of the police' },
+                    { id: 'crp-7', text: 'Information to the police and their powers to investigate' },
+                    { id: 'crp-8', text: 'Jurisdiction of the Criminal Courts in inquiries and trials' },
+                    { id: 'crp-9', text: 'Conditions requisite for initiation of proceedings' },
+                    { id: 'crp-10', text: 'Complaints to Magistrates' },
+                    { id: 'crp-11', text: 'The commencement of proceedings before Magistrates' },
+                    { id: 'crp-12', text: 'The charge' },
+                    { id: 'crp-13', text: 'Trial before a Court of Session' },
+                    { id: 'crp-14', text: 'General provisions as to inquiries and trials' },
+                    { id: 'crp-15', text: 'Special rules of evidence' },
+                    { id: 'crp-16', text: 'Provisions as to bonds' },
+                    { id: 'crp-17', text: 'The disposal of property' },
+                    { id: 'crp-18', text: 'Irregular proceedings' },
+                    { id: 'crp-19', text: 'The judgment' },
+                    { id: 'crp-20', text: 'Submission of sentences for confirmation' },
+                    { id: 'crp-21', text: 'Appeals' },
+                    { id: 'crp-22', text: 'Reference and revision' },
+                    { id: 'crp-23', text: 'Transfer of criminal cases' },
+                    { id: 'crp-24', text: 'Suspension, remission and commutation of sentences' },
+                    { id: 'crp-25', text: 'Preventive action of the Magistrates' },
+                    { id: 'crp-26', text: 'Maintenance of wives, children and parents' },
+                    { id: 'crp-27', text: 'Directions of the nature of a Habeas Corpus' },
+                    { id: 'crp-28', text: 'Penal Code' },
+                    { id: 'crp-29', text: 'Evidence Act' }
+                ]
+            },
+            {
+                id: 'constitutional-law',
+                title: 'Constitutional Law and Administrative Law',
+                topics: [
+                    { id: 'cl-1', text: 'Historical background of the Constitution of Bangladesh' },
+                    { id: 'cl-2', text: 'Salient features of the Constitution of Bangladesh' },
+                    { id: 'cl-3', text: 'Fundamental principles of state policy' },
+                    { id: 'cl-4', text: 'Fundamental rights' },
+                    { id: 'cl-5', text: 'The Executive' },
+                    { id: 'cl-6', text: 'The Legislature' },
+                    { id: 'cl-7', text: 'The Judiciary' },
+                    { id: 'cl-8', text: 'The Attorney General' },
+                    { id: 'cl-9', text: 'The Auditor General' },
+                    { id: 'cl-10', text: 'The Public Service Commission' },
+                    { id: 'cl-11', text: 'The Election Commission' },
+                    { id: 'cl-12', text: 'Emergency provisions' },
+                    { id: 'cl-13', text: 'Amendment of the Constitution' },
+                    { id: 'cl-14', text: 'Principles of Administrative Law' },
+                    { id: 'cl-15', text: 'Judicial review of administrative action' },
+                    { id: 'cl-16', text: 'Writ jurisdiction' },
+                    { id: 'cl-17', text: 'Principles of natural justice' },
+                    { id: 'cl-18', text: 'Legitimate expectation' },
+                    { id: 'cl-19', text: 'Proportionality' }
+                ]
+            },
+            {
+                id: 'contract-tort',
+                title: 'Law of Contract and Law of Tort',
+                topics: [
+                    { id: 'ct-1', text: 'Definition of contract' },
+                    { id: 'ct-2', text: 'Proposal and acceptance' },
+                    { id: 'ct-3', text: 'Communication, acceptance and revocation' },
+                    { id: 'ct-4', text: 'Capacity to contract' },
+                    { id: 'ct-5', text: 'Free consent' },
+                    { id: 'ct-6', text: 'Consideration' },
+                    { id: 'ct-7', text: 'Legality of object' },
+                    { id: 'ct-8', text: 'Void agreements' },
+                    { id: 'ct-9', text: 'Contingent contracts' },
+                    { id: 'ct-10', text: 'Performance of contracts' },
+                    { id: 'ct-11', text: 'Breach of contract and remedies' },
+                    { id: 'ct-12', text: 'Quasi-contracts' },
+                    { id: 'ct-13', text: 'Indemnity and guarantee' },
+                    { id: 'ct-14', text: 'Bailment and pledge' },
+                    { id: 'ct-15', text: 'Agency' },
+                    { id: 'ct-16', text: 'Definition and nature of tort' },
+                    { id: 'ct-17', text: 'General conditions of liability in tort' },
+                    { id: 'ct-18', text: 'Remoteness of damage' },
+                    { id: 'ct-19', text: 'Strict liability' },
+                    { id: 'ct-20', text: 'Vicarious liability' },
+                    { id: 'ct-21', text: 'Negligence' },
+                    { id: 'ct-22', text: 'Nuisance' },
+                    { id: 'ct-23', text: 'Defamation' },
+                    { id: 'ct-24', text: 'Conspiracy' },
+                    { id: 'ct-25', text: 'False imprisonment' },
+                    { id: 'ct-26', text: 'Malicious prosecution' },
+                    { id: 'ct-27', text: 'Liability for animals' },
+                    { id: 'ct-28', text: 'Remedies' }
+                ]
+            },
+            {
+                id: 'land-laws',
+                title: 'Land Laws',
+                topics: [
+                    { id: 'll-1', text: 'State Acquisition and Tenancy Act' },
+                    { id: 'll-2', text: 'Non-Agricultural Tenancy Act' },
+                    { id: 'll-3', text: 'Registration Act' },
+                    { id: 'll-4', text: 'Transfer of Property Act' },
+                    { id: 'll-5', text: 'Trusts Act' },
+                    { id: 'll-6', text: 'Specific Relief Act' },
+                    { id: 'll-7', text: 'Easements Act' },
+                    { id: 'll-8', text: 'Acquisition and Requisition of Immovable Property Act' }
+                ]
+            },
+            {
+                id: 'muslim-law',
+                title: 'Muslim Law and Hindu Law',
+                topics: [
+                    { id: 'ml-1', text: 'Sources of Muslim Law' },
+                    { id: 'ml-2', text: 'Muslim Law of inheritance' },
+                    { id: 'ml-3', text: 'Muslim Law of pre-emption' },
+                    { id: 'ml-4', text: 'Muslim Law of waqf' },
+                    { id: 'ml-5', text: 'Muslim Law of gift' },
+                    { id: 'ml-6', text: 'Muslim Law of marriage' },
+                    { id: 'ml-7', text: 'Dower' },
+                    { id: 'ml-8', text: 'Divorce' },
+                    { id: 'ml-9', text: 'Maintenance' },
+                    { id: 'ml-10', text: 'Guardianship' },
+                    { id: 'ml-11', text: 'Sources of Hindu Law' },
+                    { id: 'ml-12', text: 'Schools of Hindu Law' },
+                    { id: 'ml-13', text: 'Hindu Law of inheritance' },
+                    { id: 'ml-14', text: 'Hindu Law of religious and charitable endowments' },
+                    { id: 'ml-15', text: 'Hindu Law of marriage' },
+                    { id: 'ml-16', text: 'Guardianship' }
+                ]
+            },
+            {
+                id: 'company-law',
+                title: 'Company Law and Partnership Act',
+                topics: [
+                    { id: 'cpl-1', text: 'Incorporation of companies and matters incidental thereto' },
+                    { id: 'cpl-2', text: 'Memorandum and Articles of Association' },
+                    { id: 'cpl-3', text: 'Prospectus' },
+                    { id: 'cpl-4', text: 'Share capital and debentures' },
+                    { id: 'cpl-5', text: 'Registration of charges' },
+                    { id: 'cpl-6', text: 'Management and administration' },
+                    { id: 'cpl-7', text: 'Accounts and audit' },
+                    { id: 'cpl-8', text: 'Dividends' },
+                    { id: 'cpl-9', text: 'Prevention of oppression and mismanagement' },
+                    { id: 'cpl-10', text: 'Winding up' },
+                    { id: 'cpl-11', text: 'Definition of partnership' },
+                    { id: 'cpl-12', text: 'The relation of partners to one another' },
+                    { id: 'cpl-13', text: 'The relation of partners to third parties' },
+                    { id: 'cpl-14', text: 'Incoming and outgoing partners' },
+                    { id: 'cpl-15', text: 'Dissolution of a firm' },
+                    { id: 'cpl-16', text: 'Registration of firms' }
+                ]
+            },
+            {
+                id: 'legal-drafting',
+                title: 'Legal Drafting',
+                topics: [
+                    { id: 'ld-1', text: 'Plaints' },
+                    { id: 'ld-2', text: 'Written statements' },
+                    { id: 'ld-3', text: 'Affidavits' },
+                    { id: 'ld-4', text: 'Petitions' },
+                    { id: 'ld-5', text: 'Charge-sheets' },
+                    { id: 'ld-6', text: 'Bail petitions' },
+                    { id: 'ld-7', text: 'Memorandum of appeal' },
+                    { id: 'ld-8', text: 'Decrees' },
+                    { id: 'ld-9', text: 'Conveyancing' },
+                    { id: 'ld-10', text: 'Deeds' },
+                    { id: 'ld-11', text: 'Contracts' },
+                    { id: 'ld-12', text: 'Wills' }
+                ]
+            },
+            {
+                id: 'legal-ethics',
+                title: 'Legal Ethics and Professional Conduct',
+                topics: [
+                    { id: 'le-1', text: 'The Legal Practitioners and Bar Council Act' },
+                    { id: 'le-2', text: 'Canons of professional conduct and etiquette' },
+                    { id: 'le-3', text: 'Rights and privileges of advocates' },
+                    { id: 'le-4', text: 'Duties towards clients' },
+                    { id: 'le-5', text: 'Duties towards court' },
+                    { id: 'le-6', text: 'Duties towards fellow advocates' },
+                    { id: 'le-7', text: 'Disciplinary proceedings' },
+                    { id: 'le-8', text: 'Legal aid' }
+                ]
+            }
+        ];
 
-    function loadProgress() {
-      return JSON.parse(localStorage.getItem('studyProgress')) || {};
-    }
+        // DOM elements
+        const syllabusContainer = document.getElementById('syllabus-container');
+        const expandAllBtn = document.getElementById('expand-all');
+        const collapseAllBtn = document.getElementById('collapse-all');
+        const resetProgressBtn = document.getElementById('reset-progress');
+        const progressCircle = document.getElementById('progress-circle');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const topicsCompleted = document.getElementById('topics-completed');
+        const totalTopics = document.getElementById('total-topics');
 
-    function saveProgress(progress) {
-      localStorage.setItem('studyProgress', JSON.stringify(progress));
-    }
+        // Initialize progress tracking
+        let progress = JSON.parse(localStorage.getItem('barCouncilProgress')) || {};
+        let totalTopicsCount = 0;
 
-    function calculateProgress(progress) {
-      const totalTopics = Object.values(syllabus).flat().length;
-      const studiedTopics = Object.values(progress).flat().filter(Boolean).length;
-      return (studiedTopics / totalTopics) * 100;
-    }
+        // Function to render syllabus
+        function renderSyllabus() {
+            syllabusContainer.innerHTML = '';
+            
+            syllabusData.forEach((section, index) => {
+                const sectionElement = document.createElement('div');
+                sectionElement.className = 'border-b border-gray-200 last:border-b-0';
+                
+                // Section header
+                const header = document.createElement('div');
+                header.className = 'flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50 transition-colors';
+                header.setAttribute('data-section', section.id);
+                
+                const headerContent = document.createElement('div');
+                headerContent.className = 'flex items-center';
+                
+                const sectionNumber = document.createElement('span');
+                sectionNumber.className = 'w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-semibold mr-3';
+                sectionNumber.textContent = index + 1;
+                
+                const title = document.createElement('h4');
+                title.className = 'text-lg font-semibold text-gray-800';
+                title.textContent = section.title;
+                
+                headerContent.appendChild(sectionNumber);
+                headerContent.appendChild(title);
+                
+                const chevron = document.createElement('svg');
+                chevron.className = 'h-6 w-6 text-gray-500 transform transition-transform';
+                chevron.setAttribute('fill', 'none');
+                chevron.setAttribute('viewBox', '0 0 24 24');
+                chevron.setAttribute('stroke', 'currentColor');
+                chevron.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />';
+                
+                header.appendChild(headerContent);
+                header.appendChild(chevron);
+                
+                // Section content
+                const content = document.createElement('div');
+                content.className = 'accordion-content px-4 pb-4';
+                content.setAttribute('data-section-content', section.id);
+                
+                // Progress bar for section
+                const sectionProgress = document.createElement('div');
+                sectionProgress.className = 'mb-4';
+                
+                const progressBarContainer = document.createElement('div');
+                progressBarContainer.className = 'w-full bg-gray-200 rounded-full h-2.5';
+                
+                const progressBar = document.createElement('div');
+                progressBar.className = 'bg-indigo-600 h-2.5 rounded-full transition-all duration-500';
+                progressBar.setAttribute('id', `progress-bar-${section.id}`);
+                
+                const progressText = document.createElement('div');
+                progressText.className = 'flex justify-between text-xs text-gray-500 mt-1';
+                
+                const progressLabel = document.createElement('span');
+                progressLabel.setAttribute('id', `progress-text-${section.id}`);
+                
+                const topicsCount = document.createElement('span');
+                topicsCount.textContent = `${section.topics.length} topics`;
+                
+                progressText.appendChild(progressLabel);
+                progressText.appendChild(topicsCount);
+                
+                progressBarContainer.appendChild(progressBar);
+                sectionProgress.appendChild(progressBarContainer);
+                sectionProgress.appendChild(progressText);
+                
+                content.appendChild(sectionProgress);
+                
+                // Topics list
+                const topicsList = document.createElement('div');
+                topicsList.className = 'space-y-2';
+                
+                section.topics.forEach(topic => {
+                    totalTopicsCount++;
+                    
+                    const topicItem = document.createElement('div');
+                    topicItem.className = 'checkbox-container';
+                    
+                    const checkbox = document.createElement('div');
+                    checkbox.className = `custom-checkbox ${progress[topic.id] ? 'checked' : ''}`;
+                    checkbox.setAttribute('data-topic-id', topic.id);
+                    
+                    const topicText = document.createElement('span');
+                    topicText.className = `${progress[topic.id] ? 'line-through text-gray-500' : 'text-gray-700'}`;
+                    topicText.textContent = topic.text;
+                    
+                    topicItem.appendChild(checkbox);
+                    topicItem.appendChild(topicText);
+                    
+                    topicsList.appendChild(topicItem);
+                });
+                
+                content.appendChild(topicsList);
+                
+                sectionElement.appendChild(header);
+                sectionElement.appendChild(content);
+                
+                syllabusContainer.appendChild(sectionElement);
+            });
+            
+            // Add event listeners to section headers
+            document.querySelectorAll('[data-section]').forEach(header => {
+                header.addEventListener('click', () => {
+                    const sectionId = header.getAttribute('data-section');
+                    const content = document.querySelector(`[data-section-content="${sectionId}"]`);
+                    const chevron = header.querySelector('svg');
+                    
+                    content.classList.toggle('active');
+                    chevron.classList.toggle('rotate-180');
+                });
+            });
+            
+            // Add event listeners to checkboxes
+            document.querySelectorAll('.custom-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const topicId = checkbox.getAttribute('data-topic-id');
+                    checkbox.classList.toggle('checked');
+                    
+                    const textElement = checkbox.nextElementSibling;
+                    textElement.classList.toggle('line-through');
+                    textElement.classList.toggle('text-gray-500');
+                    
+                    if (checkbox.classList.contains('checked')) {
+                        progress[topicId] = true;
+                    } else {
+                        delete progress[topicId];
+                    }
+                    
+                    localStorage.setItem('barCouncilProgress', JSON.stringify(progress));
+                    updateProgress();
+                });
+            });
+            
+            totalTopics.textContent = totalTopicsCount;
+            updateProgress();
+        }
 
-    function renderSyllabus() {
-      const progress = loadProgress();
+        // Function to update progress
+        function updateProgress() {
+            const completedCount = Object.keys(progress).length;
+            const percentage = totalTopicsCount > 0 ? Math.round((completedCount / totalTopicsCount) * 100) : 0;
+            
+            // Update main progress circle
+            const circumference = 2 * Math.PI * 40;
+            const offset = circumference - (percentage / 100) * circumference;
+            progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+            progressCircle.style.strokeDashoffset = offset;
+            progressPercentage.textContent = `${percentage}%`;
+            topicsCompleted.textContent = completedCount;
+            
+            // Update section progress bars
+            syllabusData.forEach(section => {
+                const sectionTopicsCount = section.topics.length;
+                let sectionCompletedCount = 0;
+                
+                section.topics.forEach(topic => {
+                    if (progress[topic.id]) {
+                        sectionCompletedCount++;
+                    }
+                });
+                
+                const sectionPercentage = sectionTopicsCount > 0 ? Math.round((sectionCompletedCount / sectionTopicsCount) * 100) : 0;
+                const progressBar = document.getElementById(`progress-bar-${section.id}`);
+                const progressText = document.getElementById(`progress-text-${section.id}`);
+                
+                if (progressBar && progressText) {
+                    progressBar.style.width = `${sectionPercentage}%`;
+                    progressText.textContent = `${sectionCompletedCount} of ${sectionTopicsCount} completed (${sectionPercentage}%)`;
+                }
+            });
+        }
 
-      syllabusContainer.innerHTML = '';
-
-      for (const subject in syllabus) {
-        const subjectDiv = document.createElement('div');
-        subjectDiv.classList.add('subject');
-
-        const subjectTitle = document.createElement('h2');
-        subjectTitle.textContent = subject;
-        subjectDiv.appendChild(subjectTitle);
-
-        syllabus[subject].forEach((topic, index) => {
-          const topicDiv = document.createElement('div');
-          topicDiv.classList.add('topic');
-
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.checked = progress[subject]?.[index] || false;
-          checkbox.addEventListener('change', () => {
-            if (!progress[subject]) progress[subject] = [];
-            progress[subject][index] = checkbox.checked;
-            saveProgress(progress);
-            updateProgressBar();
-          });
-
-          const label = document.createElement('label');
-          label.textContent = topic;
-
-          topicDiv.appendChild(checkbox);
-          topicDiv.appendChild(label);
-          subjectDiv.appendChild(topicDiv);
+        // Event listeners for expand/collapse all buttons
+        expandAllBtn.addEventListener('click', () => {
+            document.querySelectorAll('[data-section-content]').forEach(content => {
+                content.classList.add('active');
+            });
+            document.querySelectorAll('[data-section] svg').forEach(chevron => {
+                chevron.classList.add('rotate-180');
+            });
         });
 
-        syllabusContainer.appendChild(subjectDiv);
-      }
+        collapseAllBtn.addEventListener('click', () => {
+            document.querySelectorAll('[data-section-content]').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('[data-section] svg').forEach(chevron => {
+                chevron.classList.remove('rotate-180');
+            });
+        });
 
-      updateProgressBar();
-    }
+        // Reset progress button
+        resetProgressBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                progress = {};
+                localStorage.setItem('barCouncilProgress', JSON.stringify(progress));
+                
+                document.querySelectorAll('.custom-checkbox').forEach(checkbox => {
+                    checkbox.classList.remove('checked');
+                    const textElement = checkbox.nextElementSibling;
+                    textElement.classList.remove('line-through', 'text-gray-500');
+                });
+                
+                updateProgress();
+            }
+        });
 
-    function updateProgressBar() {
-      const progress = loadProgress();
-      const percentage = calculateProgress(progress);
-      progressBar.style.width = `${percentage}%`;
-    }
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSyllabus();
+            
+            // Open the first section by default
+            const firstSectionContent = document.querySelector('[data-section-content]');
+            const firstSectionChevron = document.querySelector('[data-section] svg');
+            if (firstSectionContent && firstSectionChevron) {
+                firstSectionContent.classList.add('active');
+                firstSectionChevron.classList.add('rotate-180');
+            }
+        });
 
-    renderSyllabus();
-  </script>
-</body>
+        // Render syllabus immediately
+        renderSyllabus();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93abb33fb7027704',t:'MTc0NjQwMDUyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
