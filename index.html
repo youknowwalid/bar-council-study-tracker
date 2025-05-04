@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bar Council Study Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .progress-container {
+      background-color: #e0e0e0;
+      border-radius: 25px;
+      margin: 20px 0;
+      height: 25px;
+      width: 100%;
+    }
+
+    #progress-bar {
+      background-color: #27ae60;
+      height: 100%;
+      border-radius: 25px;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .subject {
+      margin-top: 20px;
+    }
+
+    .subject h2 {
+      color: #34495e;
+    }
+
+    .topic {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+
+    .topic input[type="checkbox"] {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bangladesh Bar Council Study Tracker</h1>
+    <div class="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div id="syllabus-container"></div>
+  </div>
+  <script>
+    const syllabus = {
+      "Preliminary Examination (MCQ)": [
+        "The Code of Civil Procedure, 1908",
+        "The Specific Relief Act, 1877",
+        "The Code of Criminal Procedure, 1898",
+        "The Penal Code",
+        "The Evidence Act, 1872",
+        "The Limitation Act, 1908",
+        "Professional Ethics, Bar Council Order & Rules, Legal Decisions and Reports"
+      ],
+      "Written Examination": [
+        "The Code of Civil Procedure, 1908",
+        "The Specific Relief Act, 1877",
+        "The Code of Criminal Procedure, 1898",
+        "The Penal Code",
+        "The Evidence Act, 1872",
+        "The Limitation Act, 1908",
+        "Professional Ethics, Bar Council Order & Rules, Legal Decisions and Reports"
+      ]
+    };
+
+    const syllabusContainer = document.getElementById('syllabus-container');
+    const progressBar = document.getElementById('progress-bar');
+
+    function loadProgress() {
+      return JSON.parse(localStorage.getItem('studyProgress')) || {};
+    }
+
+    function saveProgress(progress) {
+      localStorage.setItem('studyProgress', JSON.stringify(progress));
+    }
+
+    function calculateProgress(progress) {
+      const totalTopics = Object.values(syllabus).flat().length;
+      const studiedTopics = Object.values(progress).flat().filter(Boolean).length;
+      return (studiedTopics / totalTopics) * 100;
+    }
+
+    function renderSyllabus() {
+      const progress = loadProgress();
+
+      syllabusContainer.innerHTML = '';
+
+      for (const subject in syllabus) {
+        const subjectDiv = document.createElement('div');
+        subjectDiv.classList.add('subject');
+
+        const subjectTitle = document.createElement('h2');
+        subjectTitle.textContent = subject;
+        subjectDiv.appendChild(subjectTitle);
+
+        syllabus[subject].forEach((topic, index) => {
+          const topicDiv = document.createElement('div');
+          topicDiv.classList.add('topic');
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = progress[subject]?.[index] || false;
+          checkbox.addEventListener('change', () => {
+            if (!progress[subject]) progress[subject] = [];
+            progress[subject][index] = checkbox.checked;
+            saveProgress(progress);
+            updateProgressBar();
+          });
+
+          const label = document.createElement('label');
+          label.textContent = topic;
+
+          topicDiv.appendChild(checkbox);
+          topicDiv.appendChild(label);
+          subjectDiv.appendChild(topicDiv);
+        });
+
+        syllabusContainer.appendChild(subjectDiv);
+      }
+
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const progress = loadProgress();
+      const percentage = calculateProgress(progress);
+      progressBar.style.width = `${percentage}%`;
+    }
+
+    renderSyllabus();
+  </script>
+</body>
+</html>
